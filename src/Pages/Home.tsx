@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import DishesList from '../Components/Dishes/DishesList';
 import SearchForm from '../Components/Search/SearchForm';
 import { API } from '../Config/api';
 import { API_KEY } from '../Config/apiKey';
@@ -22,8 +23,9 @@ const Home = () => {
     console.log(data);
 
     return (
-        <div>
+        <div className='home'>
             <SearchForm getData={getData} />
+            {!loading ? <DishesList data={data} /> : "skeletonPlacehoolder"}
         </div>
     );
 }

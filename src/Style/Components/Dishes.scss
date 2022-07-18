@@ -1,0 +1,161 @@
+@use '../index.scss';
+
+// ZA MOBILNI
+
+.cards{
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    gap: 0.5em;
+
+    .card{
+        $self:'.card';
+        display: flex;
+        // align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        // flex-direction: column;
+        // height: 45vh;
+
+        // padding: 0.5em ;
+        // border: 1px solid red;
+        background-color: #eee;
+        // background: linear-gradient(rgba(171, 171, 171, 0.359),rgba(241, 201, 201, 0.879));
+
+        &__image{
+            // background: linear-gradient(red,pink);
+            // height: 50vh;
+            width: 100%;
+            
+            // position: relative;
+            // z-index:-1;
+
+        }
+
+        
+        &__container{
+            padding: 0.5em;
+            width: 100%;
+            // flex: 0 0 50%;
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 0.5em;
+            // flex-direction: column;
+            // width: 60%;
+
+            #{$self}__title{
+                font-family: 'Edu QLD Beginner', cursive;
+
+                //*** dodati ... ako je naslov predugacak
+                width: 100%;
+                // padding-bottom: 0.5em;
+                // text-align: center;
+                // height: 9vh;
+                // text-overflow: ellipsis;
+                // overflow: hidden;
+                // white-space: nowrap;
+            
+            }
+
+            #{$self}__text{
+                font-size: 1.2em;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+
+                #{$self}__icon{
+                    padding:0em 0.2em;
+                }
+
+            }
+
+            #{$self}__icons{
+                width: 100%;
+                margin: 0.2em 0em;
+
+                #{$self}__icon--cook,#{$self}__icon--add{
+                    float: right;
+                    font-size: 1.3em;
+                    margin-right: 0.2em;
+                    padding: 0.3em 0.5em 0.1em;
+                    border: 1px solid  rgb(73, 73, 73);
+                    border-radius: 50%;
+                    color: rgb(73, 73, 73);
+                
+                    &:hover,&:focus{
+                        color: black;
+                        border: 1px solid  black;
+                        
+                        cursor: pointer;
+                    }
+                }
+                // float: right;
+                // align-self: flex-end;
+            }
+
+        }
+    }
+}
+
+
+// ZA TABLET I DESKTOP
+// .cards{
+//     display: flex;
+//     flex-direction: column;
+//     // align-items: center;
+//     gap: 0.5em;
+
+//     .card{
+//         $self:'.card';
+//         display: flex;
+//         // align-items: center;
+//         justify-content: space-between;
+//         flex-wrap: wrap;
+//         // flex-direction: column;
+//         height: 25vh;
+
+//         // padding: 0.5em ;
+//         border: 1px solid red;
+//         background-color: #eee;
+
+//         &__image{
+//             height: 100%;
+//         }
+
+        
+//         &__container{
+//             padding: 0.5em;
+//             flex: 0 0 50%;
+
+//             display: flex;
+//             flex-wrap: wrap;
+//             // justify-content: flex-end;
+//             // flex-direction: column;
+//             // width: 60%;
+
+//             #{$self}__title{
+//                 font-family: 'Edu QLD Beginner', cursive;
+
+//                 //*** dodati ... ako je naslov predugacak
+//                 width: 100%;
+//                 height: 8vh;
+//                 text-overflow: ellipsis;
+//                 overflow: hidden;
+//                 // white-space: nowrap;
+                
+//                 // width: 50%;
+//                 // font-size: 1.8em;
+//             }
+
+//             #{$self}__icons{
+//                 width: 100%;
+//                 // float: right;
+//                 // align-self: flex-end;
+//             }
+
+//         }
+//     }
+// }
