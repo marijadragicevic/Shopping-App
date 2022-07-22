@@ -1,0 +1,7 @@
+@mixin skeleton($width:null,$height){
+    background-color:#b7b7b7;
+    width: $width;
+    height: $height;
+    border-radius: 0.5em;
+    margin-bottom: $margin;
+}

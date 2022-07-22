@@ -1,161 +1,162 @@
 @use '../index.scss';
+@use '../variables.scss' as *;
+@use '../animations.scss' as *;
+
 
 // ZA MOBILNI
 
 .cards{
     display: flex;
     flex-direction: column;
-    // align-items: center;
-    gap: 0.5em;
+    gap: 0.1em;
 
+    @media(min-width:768px){
+        margin: 0 auto;
+        width: 50%;
+        box-shadow: 0 0 10px $lightGrey
+    }
     .card{
         $self:'.card';
         display: flex;
-        // align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        // flex-direction: column;
-        // height: 45vh;
+        flex-direction: column;
+        border-bottom: 1px solid $lightGrey;
 
-        // padding: 0.5em ;
-        // border: 1px solid red;
-        background-color: #eee;
-        // background: linear-gradient(rgba(171, 171, 171, 0.359),rgba(241, 201, 201, 0.879));
+        @media(min-width:401px){
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        
 
         &__image{
-            // background: linear-gradient(red,pink);
-            // height: 50vh;
             width: 100%;
-            
-            // position: relative;
-            // z-index:-1;
 
+            @media(min-width:401px){
+               width: 25%;
+            }            
         }
-
         
         &__container{
             padding: 0.5em;
             width: 100%;
-            // flex: 0 0 50%;
 
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 0.5em;
-            // flex-direction: column;
-            // width: 60%;
-
-            #{$self}__title{
-                font-family: 'Edu QLD Beginner', cursive;
-
-                //*** dodati ... ako je naslov predugacak
-                width: 100%;
-                // padding-bottom: 0.5em;
-                // text-align: center;
-                // height: 9vh;
-                // text-overflow: ellipsis;
-                // overflow: hidden;
-                // white-space: nowrap;
+            @media(min-width:401px){
+                width: 69%;
+            }
             
+            
+            
+            #{$self}__title{
+                font-size: 1.7em;
+                font-weight: 400;
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                color:$darkGrey;
             }
 
             #{$self}__text{
                 font-size: 1.2em;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                align-items: center;
-
-                #{$self}__icon{
-                    padding:0em 0.2em;
-                }
-
+                padding-top: 0.3em;
+                font-weight: 300;
+                font-style: italic;
             }
 
             #{$self}__icons{
-                width: 100%;
-                margin: 0.2em 0em;
+                margin: 0.5em 0em 0.3em;
+                float: right;
 
                 #{$self}__icon--cook,#{$self}__icon--add{
-                    float: right;
-                    font-size: 1.3em;
+                    font-size: 1.5em;
                     margin-right: 0.2em;
-                    padding: 0.3em 0.5em 0.1em;
-                    border: 1px solid  rgb(73, 73, 73);
+                    padding: 0.2em 0.3em 0em;
                     border-radius: 50%;
-                    color: rgb(73, 73, 73);
+                    color:rgba($color: $darkYellow, $alpha: 0.6);
                 
-                    &:hover,&:focus{
-                        color: black;
-                        border: 1px solid  black;
-                        
+                    &:hover{
+                        color: $white;
+                        background-color: $darkYellow;
+                        transition: ease 0.5s;                        
                         cursor: pointer;
                     }
+
+                    &:active{
+                        transform: scale(0.5);
+                    }
                 }
-                // float: right;
-                // align-self: flex-end;
             }
 
         }
     }
 }
 
+// SKELETON PLACEHOLDER
 
-// ZA TABLET I DESKTOP
-// .cards{
-//     display: flex;
-//     flex-direction: column;
-//     // align-items: center;
-//     gap: 0.5em;
+.skeleton-container{
+    padding: 0.5em;
+    @extend .cards;
+    gap: 0.5em;
+    // background-color: $lightGrey;
+    min-height: 100vh;
 
-//     .card{
-//         $self:'.card';
-//         display: flex;
-//         // align-items: center;
-//         justify-content: space-between;
-//         flex-wrap: wrap;
-//         // flex-direction: column;
-//         height: 25vh;
-
-//         // padding: 0.5em ;
-//         border: 1px solid red;
-//         background-color: #eee;
-
-//         &__image{
-//             height: 100%;
-//         }
-
+    .skeleton{
+        $self:'.skeleton';
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.3em;
+        padding: 0.8em;
         
-//         &__container{
-//             padding: 0.5em;
-//             flex: 0 0 50%;
+        background-color: $lightGrey;
+        border-radius: 0.5em;
+    
+        animation: skeleton 3s ease-in-out infinite ;
+    
+        #{$self}__img{
+            @extend .card__image;
+            height: 18vh;
+            background-color: #bbb;
+            border-radius: 0.5em;
 
-//             display: flex;
-//             flex-wrap: wrap;
-//             // justify-content: flex-end;
-//             // flex-direction: column;
-//             // width: 60%;
+        }
 
-//             #{$self}__title{
-//                 font-family: 'Edu QLD Beginner', cursive;
+       div{
+        width: 100%;
 
-//                 //*** dodati ... ako je naslov predugacak
-//                 width: 100%;
-//                 height: 8vh;
-//                 text-overflow: ellipsis;
-//                 overflow: hidden;
-//                 // white-space: nowrap;
-                
-//                 // width: 50%;
-//                 // font-size: 1.8em;
-//             }
+        @media(min-width:401px){
+            width: 60%;
+            margin-right: 1em;
+        }
+        
+        #{$self}__title{
+            height: 5vh;
+            width: 100%;
+            border-radius: 0.5em;
+            background-color: #bbb;
+            margin-bottom: 0.2em;
+        }
+        #{$self}__text{
+            height: 3vh;
+            width: 100%;
+            border-radius: 0.3em;
+            background-color: #bbb;
+            margin-bottom: 0.2em;
+        }
+        #{$self}__icons{
+            width: 100%;
 
-//             #{$self}__icons{
-//                 width: 100%;
-//                 // float: right;
-//                 // align-self: flex-end;
-//             }
-
-//         }
-//     }
-// }
+            #{$self}__icon{
+                display: inline-block;
+                width: 10%;
+                height: 4vh;
+                padding: 1em;
+                margin:0.2em 0.3em;
+                background-color: #bbb;
+                border-radius: 50%;
+            }
+        }
+       }
+    }
+}
