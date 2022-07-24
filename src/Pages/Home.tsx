@@ -9,26 +9,37 @@ import { API_KEY } from '../Config/apiKey';
 const Home = () => {
     const [data, setData] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
+    const [totalResults, setTotalResults] = useState(0);
     const [offset, setOffset] = useState(0);
 
-
+    // potreban je API poziv koji dobija sve podatke koji kasnije trebaju da se filtriraju
+    // API poziv za implementaciju infinite scroll-a
+    // napraviti custome hook
     const getData = async (name: string) => {
-        const response = await API.get(`recipes/complexSearch?query=${name}&fillIngredients=true&addRecipeInformation=true&maxCalories=5000&offset=0&apiKey=${API_KEY}`);
-        setOffset(offset + 10);
-        setData(response.data.results);
 
-        console.log(response);
-
+        if (name === localStorage.dish && offset / 100 <= Math.ceil(totalResults / 100)) {
+            setOffset(offset + 10);
+            const response = await API.get(`recipes/complexSearch?query=${name}&fillIngredients=true&addRecipeInformation=true&maxCalories=5000&offset=${offset}&number=1&apiKey=${API_KEY}`);
+            setData([...data, ...response.data.results]);
+            setTotalResults(response.data.totalResults);
+        } else if (name !== localStorage.dish && offset / 100 <= Math.ceil(totalResults / 100)) {
+            setOffset(0);
+            const response = await API.get(`recipes/complexSearch?query=${name}&fillIngredients=true&addRecipeInformation=true&maxCalories=5000&offset=${offset}&number=1&apiKey=${API_KEY}`);
+            setData(response.data.results);
+            setTotalResults(response.data.totalResults);
+        }
         setLoading(false);
         localStorage.setItem("dish", name);
+
     }
 
-    // useEffect(() => {
-    //     getData(localStorage.dish);
-    // }, []);
-
+    useEffect(() => {
+        getData(localStorage.dish);
+    }, []);
+    // console.log(response);
     // console.log(data);
-    console.log(offset);
+    // console.log(offset);
+    // console.log(totalResults);
 
 
     return (
@@ -39,5 +50,6 @@ const Home = () => {
         </div>
     );
 }
+
 
 export default Home;

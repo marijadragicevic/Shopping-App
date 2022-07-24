@@ -4,7 +4,7 @@ import '../../Style/Components/SearchForm.scss';
 
 // type of props
 type Props = {
-    getData: (name: string) => Promise<void>
+    getData: (name: string) => Promise<void>,
 }
 
 const SearchForm: React.FC<Props> = ({ getData }) => {
