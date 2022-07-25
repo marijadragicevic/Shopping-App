@@ -112,7 +112,7 @@
         background-color: $lightGrey;
         border-radius: 0.5em;
     
-        // animation: skeleton 3s ease-in-out infinite ;
+        animation: skeleton 3s ease-in-out infinite ;
     
         #{$self}__img{
             @extend .card__image;

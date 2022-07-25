@@ -5,3 +5,16 @@
     70%{opacity: 0.7;}
     100%{opacity: 0.5;}
 }
+
+@keyframes fade-in {
+    0%{opacity: 0;}
+    30%{opacity: 0.3;}
+    60%{opacity: 0.6;}
+    100%{opacity: 1;}
+}
+@keyframes fade-out {
+    0%{opacity: 1;}
+    30%{opacity: 0.6;}
+    60%{opacity: 0.3;}
+    100%{opacity: 0;}
+}

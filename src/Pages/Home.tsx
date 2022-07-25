@@ -51,9 +51,9 @@ const Home = () => {
     return (
         <div className='home'>
             <SearchForm getData={getData} />
+            <TopButton />
             <button onClick={() => getData(localStorage.dish)}>get more results</button>
             {!loading ? <DishesList data={data} /> : <SkeletonPlaceholder number={5} />}
-            <TopButton />
         </div>
     );
 }
