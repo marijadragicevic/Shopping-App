@@ -40,19 +40,18 @@ const Home = () => {
 
     useEffect(() => {
         getData(localStorage.dish);
-
     }, []);
     // console.log(response);
-    console.log(data);
-    console.log(offset);
-    console.log(totalResults);
+    // console.log(data);
+    // console.log(offset);
+    // console.log(totalResults);
 
 
     return (
         <div className='home'>
             <SearchForm getData={getData} />
             <TopButton />
-            <button onClick={() => getData(localStorage.dish)}>get more results</button>
+            {/* <button onClick={() => getData(localStorage.dish)}>get more results</button> */}
             {!loading ? <DishesList data={data} /> : <SkeletonPlaceholder number={5} />}
         </div>
     );

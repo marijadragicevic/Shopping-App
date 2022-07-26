@@ -8,11 +8,7 @@ const TopButton: React.FC = () => {
 
     useEffect(() => {
         window.addEventListener("scroll", () => {
-            if (window.scrollY > 400) {
-                setShowBtn(true);
-            } else {
-                setShowBtn(false);
-            }
+            (window.scrollY > 400) ? setShowBtn(true) : setShowBtn(false);
         });
     }, []);
 
