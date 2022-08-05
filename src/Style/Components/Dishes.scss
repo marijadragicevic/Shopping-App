@@ -29,9 +29,10 @@
 
         &__image{
             width: 100%;
-
+            // border-radius: 1em;
+            
             @media(min-width:401px){
-               width: 25%;
+                width: 25%;
             }            
         }
         
@@ -98,7 +99,7 @@
     @extend .cards;
     gap: 0.5em;
     // background-color: $lightGrey;
-    min-height: 100vh;
+    // min-height: 100vh;
 
     .skeleton{
         $self:'.skeleton';

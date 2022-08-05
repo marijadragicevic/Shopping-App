@@ -1,27 +1,30 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import DishItem from './DishItem';
 import '../../Style/Components/Dishes.scss';
+import { v4 as uuidv4 } from 'uuid';
 
 const DishesList: React.FC<{ data: any[] }> = ({ data }) => {
-    const el = useRef<HTMLDivElement | null>(null);
 
-    useEffect(() => {
 
-        const observer = new IntersectionObserver(entries => {
-            console.log(entries);
-        },);
+    // useEffect(() => {
+    // const el = document.querySelector('.cards .card:last-child');
 
-        // observer.observe(el?.current?.lastChild);
+    // const observer = new IntersectionObserver(entries => {
+    //     console.log(entries);
+    // },);
 
-        // console.log(el);
+    // observer.observe(el)!;
 
-    }, [el]);
+    // console.log(el.current?.lastChild);
+    // console.log(el);
+
+    // }, []);
 
 
     return (
-        <div className='cards' ref={el}>
+        <div className='cards' >
             {data.length !== 0 ?
-                data.map(item => <DishItem dish={item} key={item.id} />)
+                data.map(item => <DishItem dish={item} key={uuidv4()} />)
                 : "no recepies"}
         </div>
     );
