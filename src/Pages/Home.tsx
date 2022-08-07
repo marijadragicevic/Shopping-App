@@ -22,7 +22,7 @@ const Home = () => {
     }
 
     useEffect(() => {
-        // getData(localStorage.dish);
+        getData(localStorage.dish);
     }, []);
 
     return (
