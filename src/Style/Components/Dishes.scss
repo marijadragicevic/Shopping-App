@@ -9,12 +9,8 @@
     display: flex;
     flex-direction: column;
     gap: 0.1em;
+    box-shadow: 0 0 10px $lightGrey;
 
-    @media(min-width:768px){
-        margin: 0 auto;
-        width: 50%;
-        box-shadow: 0 0 10px $lightGrey
-    }
     .card{
         $self:'.card';
         display: flex;

@@ -22,14 +22,13 @@ const Home = () => {
     }
 
     useEffect(() => {
-        getData(localStorage.dish);
+        // getData(localStorage.dish);
     }, []);
 
     return (
         <div className='home'>
             <SearchForm getData={getData} />
             <RandomDishes />
-            "tekst"
             <TopButton />
             {/* <button onClick={() => getData(localStorage.dish)}>get more results</button> */}
             {!loading ? <DishesList data={data} /> : <SkeletonPlaceholder number={5} />}

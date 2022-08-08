@@ -5,18 +5,21 @@ import { v4 as uuidv4 } from 'uuid';
 import SkeletonPlaceholder from '../SkeletonPlaceholder/SkeletonPlaceholder';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import '../../Style/Components/RandomDishes.scss';
+import { GiCook } from 'react-icons/gi';
+import { HiHeart } from 'react-icons/hi';
 
 const responsive = {
-    // desktop: {
-    //     breakpoint: { max: 4000, min: 480 },
-    //     items: 3
-    // },
+    desktop: {
+        breakpoint: { max: 4000, min: 481 },
+        items: 2
+    },
     // tablet: {
-    //     breakpoint: { max: 768, min: 480 },
+    //     breakpoint: { max: 768, min: 481 },
     //     items: 2
     // },
     mobile: {
-        breakpoint: { max: 4800, min: 0 },
+        breakpoint: { max: 480, min: 0 },
         items: 1
     }
 };
@@ -50,28 +53,22 @@ const RandomDishes = () => {
         <div>
             {!loading ?
                 <Carousel responsive={responsive} infinite={true} focusOnSelect={true}>
-
                     {data.map(dish =>
-                    (<article className='card' key={uuidv4()}>
-
-                        <img src={dish.image} alt={dish.title} className='card__image' />
-
-                        <aside className='card__container'>
-                            <h2 className='card__title'>{dish.title}</h2>
-                            <p className='card__text'>
-                                {/* {dish.readyInMinutes}min | {dish.servings} servings | {Math.ceil(dish.nutrition.nutrients[0].amount)}kcal */}
+                    (<article className='random-card' key={uuidv4()}>
+                        <img src={dish.image} alt={dish.title} className='random-card__image' />
+                        <aside className='random-card__container'>
+                            <h2 className='random-card__title'>{dish.title}</h2>
+                            <p className='random-card__text'>
+                                {dish.readyInMinutes}min | {dish.servings} servings
                             </p>
-
-                            <div className='card__icons'>
-                                {/* <i className='card__icon--cook'><GiCook /></i> */}
-                                {/* <i className='card__icon--add'><HiHeart /></i> */}
+                            <div className='random-card__btns'>
+                                <button className='random-card__btn'>Cook <i className='random-card__icon'><GiCook /></i></button>
+                                <button className='random-card__btn'>Add <i className='random-card__icon'><HiHeart /></i></button>
                             </div>
-
                         </aside>
                     </article>)
                     )}
                 </Carousel>
-                // <DishesList data={data} />
                 : <SkeletonPlaceholder number={1} />}
         </div>
     );
