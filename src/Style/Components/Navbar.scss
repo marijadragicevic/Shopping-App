@@ -1,0 +1,29 @@
+.navbar{
+    $self:&;
+    box-shadow: 0px -2px 10px rgba($color: $darkGrey, $alpha: 0.5);
+    background: $darkBlue linear-gradient( 120deg,rgba(0,0,0,0.3),rgba(0,0,0,0.1),rgba(0,0,0,0.3));
+  
+    
+    .container{
+        // background-color: ;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        
+        #{$self}__link{
+            padding: 0.27em 0.4em;
+            text-decoration: none;
+            font-size: 1.5em;
+            color: $white;
+
+            // background-color: $white;
+            
+
+            #{$self}__icon{
+            }
+            
+        }
+   }
+
+}

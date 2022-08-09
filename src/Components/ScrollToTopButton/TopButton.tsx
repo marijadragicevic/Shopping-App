@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { BsChevronUp } from 'react-icons/bs';
-import '../../Style/Components/TopButton.scss';
 
 
 const TopButton: React.FC = () => {

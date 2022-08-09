@@ -1,6 +1,5 @@
 import React from 'react';
 import DishItem from './DishItem';
-import '../../Style/Components/Dishes.scss';
 import { v4 as uuidv4 } from 'uuid';
 
 const DishesList: React.FC<{ data: any[] }> = ({ data }) => {

@@ -1,11 +1,11 @@
-@use '../index.scss';
-@use '../variables.scss' as *;
-@use '../animations.scss' as *;
-
 .random-card{
     $self:&;
     background-color: $black;
-    padding: 0.3em 0.3em 0em;
+    display: flex;
+    align-items: center;
+    // gap: 0.2em;
+    // justify-content: space-between;
+    // padding: 0.3em 0.3em 0em;
     // background: linear-gradient(rgba($color: #000000, $alpha: 0.7),rgba($color:$black,$alpha: 0.1),rgba($color:$black,$alpha: 0.1),rgba($color: #000000, $alpha: 0.6));
     
     
@@ -27,10 +27,9 @@
         #{$self}__title{
             font-size: 1.2em;
             font-weight: 500;
-            letter-spacing: 1px;
-            text-shadow: 0 0 5px $black;
+            text-shadow: 0 0 10px $black;
             color: $white;
-            margin-bottom: 0.5em;
+            margin-bottom: 0.2em;
             
             // osmisliti nesto drugo ?
             white-space: nowrap;
@@ -41,8 +40,8 @@
 
         #{$self}__text{
             font-size: 0.8em;
-            font-weight: 300;
-            text-shadow: 0 0 5px black;
+            font-weight: 200;
+            text-shadow: 0 0 10px black;
             color: $white;
             margin-bottom: 0.5em;
         }
@@ -51,20 +50,27 @@
 
             #{$self}__btn{
                 border: none;
-                color: $white;
-                background: $orange linear-gradient( 130deg,rgba(0,0,0,0.3),rgba(0,0,0,0.1),rgba(255,255,255,0.1));
+                border-radius: 1em;
                 padding: 0.2em 0.5em;
                 margin-right: 0.3em;
-                border-radius: 1em;
                 font-weight: 200;
+                color: $white;
+                background: $orange linear-gradient( 120deg,rgba(0,0,0,0.3),rgba(0,0,0,0.1),rgba(255,255,255,0.1));
                 
+                box-shadow: 0 0 10px $black;
+
                 #{$self}__icon{
                     vertical-align: middle;
                 }
 
                 &:hover{
-                    transition: 0.5s ease-in;
-                    background: $orange linear-gradient( 130deg,rgba(255,255,255,0.1),rgba(0,0,0,0.1),rgba(0,0,0,0.1),rgba(0,0,0,0.3),);
+                    transition: 0.2s ease-in;
+                    background: $pastelGreen linear-gradient( 120deg,rgba(255,255,255,0.3),rgba(0,0,0,0.1),rgba(0,0,0,0.3),rgba(0,0,0,0.5),);
+                }
+
+                &:active{
+                    transition: 0.2s ease-in;
+                    transform: scale(0.8);
                 }
             }
         

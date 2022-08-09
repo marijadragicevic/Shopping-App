@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from 'uuid';
 import SkeletonPlaceholder from '../SkeletonPlaceholder/SkeletonPlaceholder';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import '../../Style/Components/RandomDishes.scss';
 import { GiCook } from 'react-icons/gi';
 import { HiHeart } from 'react-icons/hi';
 
@@ -45,7 +44,7 @@ const RandomDishes = () => {
     }
 
     useEffect(() => {
-        getRandomDishData();
+        // getRandomDishData();
     }, [])
 
 

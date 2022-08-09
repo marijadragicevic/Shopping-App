@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai';
-import '../../Style/Components/SearchForm.scss';
 
 // type of props
 type Props = {
