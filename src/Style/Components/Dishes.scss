@@ -19,8 +19,6 @@
             width:30%;
         }
         
-
-        
         &__container1{
             position: relative;
             
@@ -113,52 +111,51 @@
 // SKELETON PLACEHOLDER
 
 .skeleton-container{
-    padding: 0.5em;
     @extend .cards;
-    // gap: 0.5em;
 
     .skeleton{
         $self:'.skeleton';
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
+        flex-direction: column;
         gap: 0.3em;
         padding: 0.8em;
         
         background-color: $lightGrey;
         border-radius: 0.5em;
-    
+
         // animation: skeleton 3s ease-in-out infinite ;
-    
-        &__conatiner
-        #{$self}__img{
-            // @extend .card__image;
-            height: 18vh;
-            background-color: #bbb;
-            border-radius: 0.5em;
-
+        
+        // FOR TABLET AND DESKTOP
+        @media(min-width:401px){
+            width:30%;
         }
-        #{$self}__icons{
-            width: 100%;
-
-            #{$self}__icon{
-                display: inline-block;
-                width: 10%;
-                height: 4vh;
-                padding: 1em;
-                margin:0.2em 0.3em;
+        
+            #{$self}__icons{
                 background-color: #bbb;
-                border-radius: 50%;
+                width: 100%;
+                height: 18vh;
+                border-radius: 0.5em;
+                position: relative;
+    
+                #{$self}__icon{
+                    position: absolute;
+                    width: 10%;
+                    height: 4vh;
+                    padding: 1em;
+                    margin:0.2em 0.3em;
+
+                    border-radius: 50%;
+                    background-color: $lightGrey;
+                }
+                
+                #{$self}__icon--info{
+                    right: 0;
+                }
+
             }
-        }
-        div{
+
+       &__container{
             width: 100%;
-            
-            @media(min-width:401px){
-                width: 60%;
-                margin-right: 1em;
-            }
         
         #{$self}__title{
             height: 5vh;

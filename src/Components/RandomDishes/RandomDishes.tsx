@@ -68,7 +68,7 @@ const RandomDishes = () => {
                     </article>)
                     )}
                 </Carousel>
-                : <SkeletonPlaceholder number={1} />}
+                : <SkeletonPlaceholder number={3} />}
         </div>
     );
 }

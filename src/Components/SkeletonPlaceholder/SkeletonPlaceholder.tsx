@@ -8,15 +8,12 @@ const SkeletonPlaceholder: React.FC<{ number: number }> = ({ number }) => {
             {Array.from(Array(number).keys()).map((el, index) =>
 
             (<div className='skeleton' key={index}>
-                <div className='skeleton__container1'>
-                    <div className='skeleton__img'></div>
-                    <div className='skeleton__icons'>
-                        <p className='skeleton__icon'></p>
-                        <p className='skeleton__icon'></p>
-                    </div>
+                <div className='skeleton__icons'>
+                    <p className='skeleton__icon skeleton__icon'></p>
+                    <p className='skeleton__icon skeleton__icon--info'></p>
                 </div>
 
-                <div className='skeleton__container2'>
+                <div className='skeleton__container'>
                     <p className='skeleton__title'></p>
                     <p className='skeleton__text'></p>
                 </div>
