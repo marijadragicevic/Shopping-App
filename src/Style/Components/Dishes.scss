@@ -1,44 +1,82 @@
-// ZA MOBILNI
-
+// FOR MOBILE
 .cards{
     display: flex;
-    flex-direction: column;
-    gap: 0.1em;
-    box-shadow: 0 0 10px $lightGrey;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 1em;
+
+    margin: 1em 0.5em 5em;
 
     .card{
+        width: 100%;
         $self:'.card';
         display: flex;
         flex-direction: column;
-        border-bottom: 1px solid $lightGrey;
-
+        box-shadow: 0 0 10px rgba($color: $black, $alpha: 0.6);
+        
+        // FOR TABLET AND DESKTOP
         @media(min-width:401px){
-            flex-direction: row;
-            justify-content: space-between;
+            width:30%;
         }
         
 
-        &__image{
-            width: 100%;
-            // border-radius: 1em;
+        
+        &__container1{
+            position: relative;
             
-            @media(min-width:401px){
-                width: 25%;
-            }            
-        }
-        
-        &__container{
-            padding: 0.5em;
-            width: 100%;
-
-            @media(min-width:401px){
-                width: 69%;
+            #{$self}__image{
+                width: 100%;         
             }
+                
+            #{$self}__icons{
+                    
+                #{$self}__icon{
+                    position: absolute;
+                    font-size: 1.5em;
+                    padding: 0.1em 0.2em 0em;
+                    color:$white;
+                    background-color: rgba($color: $black, $alpha: 0.2);
+                    
+                    // FOR TABLET AND DESKTOP
+                    @media(min-width:401px){
+                        font-size: 1.2em;
+                    }
+                    
+                    &:hover{
+                        background-color: $darkYellow;
+                        filter: drop-shadow(0px 0px 1px black );
+                        transition: ease 0.5s;                        
+                        cursor: pointer;
+                    }
+    
+                    &:active{
+                        transform: scale(0.5);
+                        transition: ease 0.3s;    
+                    }
+                    
+                }
+                
+                .card__icon--save{
+                    border-radius: 10px 1px 10px 10px;
+                    top: 0;
+                    right: 0;
+                }
+
+                .card__icon--info{
+                    border-radius: 1px 10px 10px;
+                    top: 0;
+                }
+    
+            }
+        }
             
-            
+        &__container2{
+            width: 100%;
+            padding: 0.5em;
+            text-align: center;
             
             #{$self}__title{
-                font-size: 1.7em;
+                font-size: 1.3em;
                 font-weight: 400;
                 width: 100%;
                 white-space: nowrap;
@@ -46,36 +84,25 @@
                 text-overflow: ellipsis;
 
                 color:$darkGrey;
+
+                // FOR TABLET AND DESKTOP
+                @media(min-width:401px){
+                    font-size: 1em;
+                }
             }
 
             #{$self}__text{
-                font-size: 1.2em;
+                font-size: 1.1em;
                 padding-top: 0.3em;
                 font-weight: 300;
                 font-style: italic;
-            }
 
-            #{$self}__icons{
-                margin: 0.5em 0em 0.3em;
-                float: right;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
 
-                #{$self}__icon--cook,#{$self}__icon--add{
-                    font-size: 1.5em;
-                    margin-right: 0.2em;
-                    padding: 0.2em 0.3em 0em;
-                    border-radius: 50%;
-                    color:rgba($color: $darkYellow, $alpha: 0.6);
-                
-                    &:hover{
-                        color: $white;
-                        background-color: $darkYellow;
-                        transition: ease 0.5s;                        
-                        cursor: pointer;
-                    }
-
-                    &:active{
-                        transform: scale(0.5);
-                    }
+                @media(min-width:401px){
+                    font-size: 0.8em;
                 }
             }
 
@@ -88,9 +115,7 @@
 .skeleton-container{
     padding: 0.5em;
     @extend .cards;
-    gap: 0.5em;
-    // background-color: $lightGrey;
-    // min-height: 100vh;
+    // gap: 0.5em;
 
     .skeleton{
         $self:'.skeleton';
@@ -106,21 +131,34 @@
     
         // animation: skeleton 3s ease-in-out infinite ;
     
+        &__conatiner
         #{$self}__img{
-            @extend .card__image;
+            // @extend .card__image;
             height: 18vh;
             background-color: #bbb;
             border-radius: 0.5em;
 
         }
+        #{$self}__icons{
+            width: 100%;
 
-       div{
-        width: 100%;
-
-        @media(min-width:401px){
-            width: 60%;
-            margin-right: 1em;
+            #{$self}__icon{
+                display: inline-block;
+                width: 10%;
+                height: 4vh;
+                padding: 1em;
+                margin:0.2em 0.3em;
+                background-color: #bbb;
+                border-radius: 50%;
+            }
         }
+        div{
+            width: 100%;
+            
+            @media(min-width:401px){
+                width: 60%;
+                margin-right: 1em;
+            }
         
         #{$self}__title{
             height: 5vh;
@@ -135,19 +173,6 @@
             border-radius: 0.3em;
             background-color: #bbb;
             margin-bottom: 0.2em;
-        }
-        #{$self}__icons{
-            width: 100%;
-
-            #{$self}__icon{
-                display: inline-block;
-                width: 10%;
-                height: 4vh;
-                padding: 1em;
-                margin:0.2em 0.3em;
-                background-color: #bbb;
-                border-radius: 50%;
-            }
         }
        }
     }

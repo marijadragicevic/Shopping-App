@@ -15,7 +15,7 @@ const Home = () => {
     const getData = async (name: string) => {
 
         localStorage.setItem("dish", name);
-        const response = await API.get(`recipes/complexSearch?query=${name}&fillIngredients=true&addRecipeInformation=true&maxCalories=5000&number=10&apiKey=${API_KEY}`);
+        const response = await API.get(`recipes/complexSearch?query=${name}&fillIngredients=true&addRecipeInformation=true&maxCalories=5000&number=9&apiKey=${API_KEY}`);
         setData(response.data.results);
         setLoading(false);
 
