@@ -17,7 +17,7 @@ const SearchForm: React.FC<Props> = ({ getData }) => {
     }
 
     return (
-        <form className='form' onSubmit={(e) => handleSubmit(e)}>
+        <form className='form' id='form' onSubmit={(e) => handleSubmit(e)}>
             <input type='text' className='form__input' minLength={3} value={name} required onChange={(e) => setName(e.target.value)} placeholder='Enter the name of dish...' />
             <i className='form__icon'><AiOutlineSearch /></i>
         </form>

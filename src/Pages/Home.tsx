@@ -22,7 +22,7 @@ const Home = () => {
     }
 
     useEffect(() => {
-        // getData(localStorage.dish);
+        getData(localStorage.dish);
     }, []);
 
     return (
@@ -31,7 +31,7 @@ const Home = () => {
             <RandomDishes />
             <TopButton />
             {/* <button onClick={() => getData(localStorage.dish)}>get more results</button> */}
-            {!loading ? <DishesList data={data} /> : <SkeletonPlaceholder number={5} />}
+            {!loading ? <DishesList data={data} /> : <SkeletonPlaceholder number={9} />}
         </div>
     );
 }

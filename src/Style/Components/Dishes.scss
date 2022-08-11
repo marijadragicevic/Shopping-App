@@ -8,6 +8,7 @@
     margin: 1em 0.5em 5em;
 
     .card{
+        background-color: $white;
         width: 100%;
         $self:'.card';
         display: flex;
@@ -21,7 +22,7 @@
         
         &__container1{
             position: relative;
-            
+
             #{$self}__image{
                 width: 100%;         
             }
@@ -70,13 +71,15 @@
             
         &__container2{
             width: 100%;
-            padding: 0.5em;
+            padding:0 0.3em 0.4em;
             text-align: center;
+            
             
             #{$self}__title{
                 font-size: 1.3em;
                 font-weight: 400;
                 width: 100%;
+
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -91,7 +94,6 @@
 
             #{$self}__text{
                 font-size: 1.1em;
-                padding-top: 0.3em;
                 font-weight: 300;
                 font-style: italic;
 
@@ -111,9 +113,14 @@
 // SKELETON PLACEHOLDER
 
 .skeleton-container{
-    @extend .cards;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 1em;
+    margin:1em 0.5em 2em;
 
     .skeleton{
+        width: 100%;
         $self:'.skeleton';
         display: flex;
         flex-direction: column;
@@ -125,34 +132,17 @@
 
         // animation: skeleton 3s ease-in-out infinite ;
         
-        // FOR TABLET AND DESKTOP
+         // FOR TABLET AND DESKTOP
         @media(min-width:401px){
             width:30%;
         }
         
-            #{$self}__icons{
-                background-color: #bbb;
-                width: 100%;
-                height: 18vh;
-                border-radius: 0.5em;
-                position: relative;
-    
-                #{$self}__icon{
-                    position: absolute;
-                    width: 10%;
-                    height: 4vh;
-                    padding: 1em;
-                    margin:0.2em 0.3em;
-
-                    border-radius: 50%;
-                    background-color: $lightGrey;
-                }
-                
-                #{$self}__icon--info{
-                    right: 0;
-                }
-
-            }
+        #{$self}__img{
+            background-color: #bbb;
+            width: 100%;
+            height: 18vh;
+            border-radius: 0.5em;
+        }
 
        &__container{
             width: 100%;

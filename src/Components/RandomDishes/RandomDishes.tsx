@@ -15,7 +15,7 @@ const responsive = {
     },
     // tablet: {
     //     breakpoint: { max: 768, min: 481 },
-    //     items: 2
+    //     items: 2.5
     // },
     mobile: {
         breakpoint: { max: 480, min: 0 },
@@ -44,7 +44,7 @@ const RandomDishes = () => {
     }
 
     useEffect(() => {
-        // getRandomDishData();
+        getRandomDishData();
     }, [])
 
 

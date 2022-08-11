@@ -1,26 +1,50 @@
 .navbar{
     $self:&;
     box-shadow: 0px -2px 10px rgba($color: $darkGrey, $alpha: 0.5);
-    background: $darkBlue linear-gradient( 120deg,rgba(0,0,0,0.3),rgba(0,0,0,0.1),rgba(0,0,0,0.3));
-  
-    
+    background: rgb(255, 210, 73) linear-gradient( 150deg,rgba($color: $orange, $alpha: 0.5),rgba($color: $black, $alpha: 0.1),rgba($color: $orange, $alpha: 0.5));
+
+    @media(min-width:401px)and(max-width:768px){
+        border-radius: 1.5em;
+    }
+
     .container{
-        // background-color: ;
         display: flex;
         align-items: center;
         justify-content: space-around;
 
-        
+        @media(min-width:401px)and(max-width:768px){
+            border-radius: 1.5em;
+        }   
         #{$self}__link{
-            padding: 0.27em 0.4em;
+            padding: 0.1em 0.4em;
             text-decoration: none;
-            font-size: 1.5em;
             color: $white;
+            font-size: 1.5em;
 
-            // background-color: $white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            filter: drop-shadow(0 0 2px rgba($color:$black,$alpha: 0.5));
             
-
+            @media(min-width:401px)and(max-width:768px){
+               
+                padding: 0.2em 0.4em;
+            }
+            
+            &:hover{
+                background-color: $orange;
+            }
+            
+            
             #{$self}__icon{
+                // border: 1px solid black;
+
+            }
+
+            #{$self}__text{
+                font-size: 0.5em;
+
             }
             
         }
