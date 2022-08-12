@@ -1,7 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// u index pa odatle da se uveze
 import Navbar from './Components/Navbar/Navbar';
+import ContextProvider from './Context/Context';
+import Favorites from './Pages/Favorites';
+import History from './Pages/History';
 import Home from './Pages/Home';
+import RecipeDetails from './Pages/RecipeDetails';
+
 import './Style/index.scss';
 
 function App() {
@@ -10,11 +16,16 @@ function App() {
 
       <Router>
 
-        <Routes>
-          <Route path='/' element={<Home />} />
-        </Routes>
+        <ContextProvider>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/recipeDetails' element={<RecipeDetails />} />
+            <Route path='/favorites' element={<Favorites />} />
+            <Route path='/history' element={<History />} />
+          </Routes>
 
-        <Navbar />
+          <Navbar />
+        </ContextProvider>
 
       </Router>
 

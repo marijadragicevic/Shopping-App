@@ -1,12 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai';
+import { Context } from '../../Context/Context';
 
-// type of props
-type Props = {
-    getData: (name: string) => Promise<void>,
-}
+const SearchForm: React.FC = () => {
 
-const SearchForm: React.FC<Props> = ({ getData }) => {
+    const { getData } = useContext(Context);
 
     const [name, setName] = useState<string>("");
 

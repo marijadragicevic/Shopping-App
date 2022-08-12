@@ -18,12 +18,12 @@ const Navbar = () => {
                     <p className='navbar__text'>Search</p>
                 </Link>
 
-                <Link to='/' className='navbar__link'>
+                <Link to='/favorites' className='navbar__link'>
                     <HiHeart className='navbar__icon' />
                     <p className='navbar__text'>Favorites</p>
                 </Link>
 
-                <Link to='/' className='navbar__link'>
+                <Link to='/history' className='navbar__link'>
                     <BsClockHistory className='navbar__icon' />
                     <p className='navbar__text'>History</p>
                 </Link>

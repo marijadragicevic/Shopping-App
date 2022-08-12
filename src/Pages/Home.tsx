@@ -1,33 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import DishesList from '../Components/Dishes/DishesList';
 import RandomDishes from '../Components/RandomDishes/RandomDishes';
 import TopButton from '../Components/ScrollToTopButton/TopButton';
 import SearchForm from '../Components/Search/SearchForm';
 import SkeletonPlaceholder from '../Components/SkeletonPlaceholder/SkeletonPlaceholder';
-import { API } from '../Config/api';
-import { API_KEY } from '../Config/apiKey';
+import { Context } from '../Context/Context';
 
 const Home = () => {
-    const [data, setData] = useState<any[]>([]);
-    const [loading, setLoading] = useState(true);
-
-
-    const getData = async (name: string) => {
-
-        localStorage.setItem("dish", name);
-        const response = await API.get(`recipes/complexSearch?query=${name}&fillIngredients=true&addRecipeInformation=true&maxCalories=5000&number=9&apiKey=${API_KEY}`);
-        setData(response.data.results);
-        setLoading(false);
-
-    }
-
-    useEffect(() => {
-        getData(localStorage.dish);
-    }, []);
-
+    const { data, loading } = useContext(Context);
     return (
         <div className='home'>
-            <SearchForm getData={getData} />
+            <SearchForm />
             <RandomDishes />
             <TopButton />
             {/* <button onClick={() => getData(localStorage.dish)}>get more results</button> */}

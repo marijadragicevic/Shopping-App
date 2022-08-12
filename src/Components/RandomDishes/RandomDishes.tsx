@@ -7,6 +7,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { GiCook } from 'react-icons/gi';
 import { HiHeart } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
 
 const responsive = {
     desktop: {
@@ -38,9 +39,9 @@ const RandomDishes = () => {
 
     // For Random recepies
     const getRandomDishData = async () => {
-        const response = await API.get(`recipes/random?number=6&apiKey=${API_KEY}`);
+        const response = await API.get(`recipes/random?number=1&apiKey=${API_KEY}`);
         setRandomDishes({ data: response.data.recipes, loading: false })
-        console.log(response.data);
+        // console.log(response.data);
     }
 
     useEffect(() => {
@@ -61,7 +62,7 @@ const RandomDishes = () => {
                                 {dish.readyInMinutes}min | {dish.servings} servings
                             </p>
                             <div className='random-card__btns'>
-                                <button className='random-card__btn'>Cook <i className='random-card__icon'><GiCook /></i></button>
+                                <Link to={'/recipeDetails'}><button className='random-card__btn'>Cook <i className='random-card__icon'><GiCook /></i></button></Link>
                                 <button className='random-card__btn'>Add <i className='random-card__icon'><HiHeart /></i></button>
                             </div>
                         </aside>

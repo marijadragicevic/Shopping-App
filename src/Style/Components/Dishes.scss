@@ -2,10 +2,10 @@
 .cards{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
     gap: 1em;
 
-    margin: 1em 0.5em 5em;
+    margin: 1em 0.2em 5em;
 
     .card{
         background-color: $white;

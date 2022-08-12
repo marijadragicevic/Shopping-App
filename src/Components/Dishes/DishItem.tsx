@@ -1,6 +1,7 @@
 import React from 'react';
 import { GiCook } from 'react-icons/gi';
 import { HiHeart } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
 
 
 const DishItem: React.FC<{ dish: any }> = ({ dish }) => {
@@ -12,7 +13,8 @@ const DishItem: React.FC<{ dish: any }> = ({ dish }) => {
                 <img src={dish.image} alt={dish.title} className='card__image' />
                 <div className='card__icons'>
                     <i className='card__icon card__icon--save'><HiHeart /></i>
-                    <i className='card__icon card__icon--info'><GiCook /></i>
+                    <Link to={'/recipeDetails'}>  <i className='card__icon card__icon--info'><GiCook /></i></Link>
+
                 </div>
             </article>
 
