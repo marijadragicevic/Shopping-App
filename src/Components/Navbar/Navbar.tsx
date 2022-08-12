@@ -10,7 +10,8 @@ const Navbar = () => {
         two: false,
         three: false
     });
-    const { one, two, three } = icons
+    const { one, two, three } = icons;
+
 
     return (
         <nav className='navbar'>
