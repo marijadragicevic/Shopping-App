@@ -1,31 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineHome, AiFillHome, AiOutlineSearch } from 'react-icons/ai';
-import { HiHeart } from 'react-icons/hi';
+import { HiHeart, HiOutlineHeart } from 'react-icons/hi';
 import { BsClockHistory } from 'react-icons/bs';
 
 const Navbar = () => {
+    const [icons, setIcons] = useState({
+        one: true,
+        two: false,
+        three: false
+    });
+    const { one, two, three } = icons
+
     return (
         <nav className='navbar'>
             <div className='container'>
-                <Link to='/' className='navbar__link'>
-                    <AiOutlineHome className='navbar__icon' />
-                    <p className='navbar__text'>Home</p>
+                <Link to='/' className={one ? 'navbar__link active' : 'navbar__link'} onClick={() => setIcons({ one: true, two: false, three: false })}>
+                    {one ? <AiFillHome className='navbar__icon' /> : <AiOutlineHome className='navbar__icon' />}
+                    <span className='navbar__text'>Home</span>
                 </Link>
 
-                <Link to='#form' className='navbar__link'>
+                <a href='#form' className='navbar__link'>
                     <AiOutlineSearch className='navbar__icon' />
-                    <p className='navbar__text'>Search</p>
+                    <span className='navbar__text'>Search</span>
+                </a>
+
+                <Link to='/favorites' className={two ? 'navbar__link active' : 'navbar__link'} onClick={() => setIcons({ one: false, two: true, three: false })}>
+                    {two ? <HiHeart className='navbar__icon' /> : <HiOutlineHeart className='navbar__icon' />}
+                    <span className='navbar__text'>Favorites</span>
                 </Link>
 
-                <Link to='/favorites' className='navbar__link'>
-                    <HiHeart className='navbar__icon' />
-                    <p className='navbar__text'>Favorites</p>
-                </Link>
-
-                <Link to='/history' className='navbar__link'>
+                <Link to='/history' className={three ? 'navbar__link active' : 'navbar__link'} onClick={() => setIcons({ one: false, two: false, three: true })}>
                     <BsClockHistory className='navbar__icon' />
-                    <p className='navbar__text'>History</p>
+                    <span className='navbar__text'>History</span>
                 </Link>
 
             </div>

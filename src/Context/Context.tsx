@@ -12,7 +12,7 @@ export type ContextType = {
 const initailValue = {
     data: [],
     loading: true,
-    getData: () => { }
+    getData: (name: string) => { }
 }
 
 // 2.
@@ -45,7 +45,7 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
 
     // call function when component is mounted the first time
     useEffect(() => {
-        getData(localStorage.dish);
+        // getData(localStorage.dish);
     }, []);
 
 

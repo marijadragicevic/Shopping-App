@@ -3,10 +3,10 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import { Context } from '../../Context/Context';
 
 const SearchForm: React.FC = () => {
+    const [name, setName] = useState<string>("");
 
     const { getData } = useContext(Context);
 
-    const [name, setName] = useState<string>("");
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();

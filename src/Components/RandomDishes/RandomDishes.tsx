@@ -45,7 +45,7 @@ const RandomDishes = () => {
     }
 
     useEffect(() => {
-        getRandomDishData();
+        // getRandomDishData();
     }, [])
 
 
