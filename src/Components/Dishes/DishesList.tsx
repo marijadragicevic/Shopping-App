@@ -7,17 +7,22 @@ import SkeletonPlaceholder from '../SkeletonPlaceholder/SkeletonPlaceholder';
 const DishesList: React.FC<{ data: any[] }> = ({ data }) => {
 
     // array for infinitive scroll implementation
-    const [newData, setNewData] = useState<any[]>([data[0], data[1], data[2], data[3], data[4], data[5]]);
+    const [newData, setNewData] = useState<any[]>([data[0], data[1], data[2]]);
     const [loading, setLoading] = useState(true);
 
     // get reference
     const container = useRef<HTMLDivElement | null>(null);
 
     const handleInfinitiveScroll = () => {
-        let array = data.filter((item, index) => index > newData.length && index < newData.length + 6)
+        let array = data.filter((item, index) => index > newData.length && index < newData.length + 3)
         setNewData([...newData, ...array]);
     }
+    useEffect(() => {
+        setNewData([data[0], data[1], data[2]]);
+        setLoading(true);
+    }, [data]);
 
+    /*
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
             entries.map((entry) => {
@@ -39,7 +44,7 @@ const DishesList: React.FC<{ data: any[] }> = ({ data }) => {
 
         }
 
-    }, [newData]);
+    }, [newData]);*/
 
 
     return (

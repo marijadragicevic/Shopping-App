@@ -39,7 +39,7 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
     const getData = async (name: string) => {
         // set name to localStorage, so when we open app the first time it will display some data
         localStorage.setItem("dish", name);
-        const response = await API.get(`recipes/complexSearch?query=${name}&fillIngredients=true&addRecipeInformation=true&maxCalories=5000&number=21&apiKey=${API_KEY}`);
+        const response = await API.get(`recipes/complexSearch?query=${name}&fillIngredients=true&addRecipeInformation=true&maxCalories=5000&number=2&apiKey=${API_KEY}`);
         setDishes({ data: response.data.results, loading: false });
         console.log(response);
 
