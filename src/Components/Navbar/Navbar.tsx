@@ -21,6 +21,7 @@ const Navbar = () => {
                     <span className='navbar__text'>Home</span>
                 </Link>
 
+                {/* izbaciti search iz navbara */}
                 <a href='#form' className='navbar__link'>
                     <AiOutlineSearch className='navbar__icon' />
                     <span className='navbar__text'>Search</span>

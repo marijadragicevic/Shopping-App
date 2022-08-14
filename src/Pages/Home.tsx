@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import DishesList from '../Components/Dishes/DishesList';
 import RandomDishes from '../Components/RandomDishes/RandomDishes';
 import TopButton from '../Components/ScrollToTopButton/TopButton';
@@ -7,6 +7,7 @@ import SkeletonPlaceholder from '../Components/SkeletonPlaceholder/SkeletonPlace
 import { Context } from '../Context/Context';
 
 const Home = () => {
+    // use from Context.tsx
     const { data, loading } = useContext(Context);
 
     return (
