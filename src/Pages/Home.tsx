@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext } from 'react';
 import DishesList from '../Components/Dishes/DishesList';
 import RandomDishes from '../Components/RandomDishes/RandomDishes';
 import TopButton from '../Components/ScrollToTopButton/TopButton';
@@ -11,12 +11,15 @@ const Home = () => {
     const { data, loading } = useContext(Context);
 
     return (
-        <div className='home'>
+        <div className='home' style={{ marginTop: '1500px' }}>
             <SearchForm />
             <RandomDishes />
             <TopButton />
             {/* <button onClick={() => getData(localStorage.dish)}>get more results</button> */}
-            {!loading ? <DishesList data={data} /> : <SkeletonPlaceholder number={9} />}
+            {!loading && data.length !== 0
+                ? <DishesList data={data} />
+                : !loading && data.length === 0 ? "NO DATA"
+                    : <SkeletonPlaceholder number={9} />}
         </div>
     );
 }
