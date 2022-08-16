@@ -7,12 +7,14 @@ import { API_KEY } from "../Config/apiKey";
 export type ContextType = {
     data: any[],
     loading: boolean,
-    getData: (name: string) => void
+    getData: (name: string) => void,
+    handleFavorites: (payload: any) => void,
 }
 const initailValue = {
     data: [],
     loading: true,
-    getData: (name: string) => { }
+    getData: (name: string) => { },
+    handleFavorites: (payload: any) => { }
 }
 
 // 2.
@@ -31,6 +33,8 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
         data: [],
         loading: true
     });
+    const [favorites, setFavorites] = useState<any[]>([]);
+    const [savedTitles, setSavedTitles] = useState<string[]>([]);
 
     // destructuring 
     const { data, loading } = dishes;
@@ -45,14 +49,34 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
 
     }
 
+
+    // function to add or remove items from favorites
+
+    const handleFavorites = (payload: any) => {
+        if (!savedTitles.includes(payload.title)) {
+            setFavorites([...favorites, payload]);
+            setSavedTitles([...savedTitles, payload.title]);
+        } else if (savedTitles.includes(payload.title)) {
+            let array = favorites.filter(item => item.title !== payload.title);
+            setFavorites(array);
+            setSavedTitles(savedTitles.filter(savedTitle => savedTitle !== payload.title));
+        }
+
+
+    }
+
     // call function when component is mounted the first time
     useEffect(() => {
         getData(localStorage.dish);
     }, []);
 
+    useEffect(() => {
+        console.log(favorites, savedTitles);
+    }, [favorites, savedTitles]);
+
 
     return (
-        <Context.Provider value={{ data, loading, getData }}>
+        <Context.Provider value={{ data, loading, getData, handleFavorites }}>
             {children}
         </Context.Provider>
     )

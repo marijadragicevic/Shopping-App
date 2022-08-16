@@ -10,7 +10,7 @@ const DishesList: React.FC<{ data: any[] }> = ({ data }) => {
     const [newData, setNewData] = useState<any[]>([data[0], data[1], data[2]]);
     const [loading1, setLoading1] = useState(true);
 
-    const [e, setE] = useState<HTMLDivElement | null>(null);
+
     // get reference
     const container = useRef<HTMLDivElement | null>(null);
     const end = useRef<HTMLDivElement | null>(null);
@@ -20,40 +20,35 @@ const DishesList: React.FC<{ data: any[] }> = ({ data }) => {
         setNewData([...newData, ...array]);
     }
 
-    // if (container.current!==null) {
-    //     setE(container.current);
-    // }
 
-    useEffect(() => {
+    // NE RADI; treba da se observer.unobserve namesti za kartice
+    // useEffect(() => {
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.map((entry) => {
-                if (entry.intersectionRatio > 0.0) {
-                    console.log(entry);
-                    handleInfinitiveScroll();
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5, });
+    // const observer = new IntersectionObserver((entries) => {
+    //     entries.map((entry) => {
+    //         if (entry.intersectionRatio > 0.0) {
+    //             console.log(entry);
+    //             handleInfinitiveScroll();
+    //             observer.unobserve(entry.target);
+    //         }
+    //     });
+    // }, { threshold: 0.5, });
 
-        observer.observe(container?.current?.lastChild as Element);
+    // observer.observe(container?.current?.lastChild as Element);
 
 
-        const observe2 = new IntersectionObserver((entries) => {
-            entries.map((entry) => {
-                if (entry.intersectionRatio > 0.0) {
-                    observer.unobserve(container?.current?.lastChild as Element);
-                }
-            });
-        }, { threshold: 1 })
+    // ne radi
+    // const observe2 = new IntersectionObserver((entries) => {
+    //     entries.map((entry) => {
+    //         if (entry.intersectionRatio > 0.0) {
+    //             observer.unobserve(container?.current?.lastChild as Element);
+    //         }
+    //     });
+    // }, { threshold: 1 })
 
-        observe2.observe(end?.current as Element)
-        // if (newData.length >= data.length) {
-        //     observer.unobserve(container?.current?.lastChild as Element);
-        // }
+    // observe2.observe(end?.current as Element)
 
-        // return () => observer.disconnect();
-    }, [newData]);
+    // }, [newData]);
 
     useEffect(() => {
         setNewData([data[0], data[1], data[2]]);

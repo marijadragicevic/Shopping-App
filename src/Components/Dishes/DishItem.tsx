@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { GiCook } from 'react-icons/gi';
 import { HiHeart } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
+import { Context } from '../../Context/Context';
 
 
 const DishItem: React.FC<{ dish: any }> = ({ dish }) => {
+    const { handleFavorites } = useContext(Context);
 
     return (
         <article className='card'>
@@ -12,7 +14,7 @@ const DishItem: React.FC<{ dish: any }> = ({ dish }) => {
             <article className='card__container1'>
                 <img src={dish.image} alt={dish.title} className='card__image' />
                 <div className='card__icons'>
-                    <i className='card__icon card__icon--save'><HiHeart /></i>
+                    <i className='card__icon card__icon--save' onClick={() => handleFavorites(dish)}><HiHeart /></i>
                     <Link to={'/recipeDetails'}>  <i className='card__icon card__icon--info'><GiCook /></i></Link>
 
                 </div>
