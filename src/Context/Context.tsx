@@ -9,12 +9,14 @@ export type ContextType = {
     loading: boolean,
     getData: (name: string) => void,
     handleFavorites: (payload: any) => void,
+    handleCookNow: (title: string) => void
 }
 const initailValue = {
     data: [],
     loading: true,
     getData: (name: string) => { },
-    handleFavorites: (payload: any) => { }
+    handleFavorites: (payload: any) => { },
+    handleCookNow: (title: string) => { }
 }
 
 // 2.
@@ -29,12 +31,15 @@ type Props = { children: React.ReactNode }
 const ContextProvider: React.FC<Props> = ({ children }) => {
 
     // state that will be passed as value to ContextProvider 
-    const [dishes, setDishes] = useState({
+    const [dishes, setDishes] = useState<{ data: any[], loading: boolean }>({
         data: [],
         loading: true
     });
+
     const [favorites, setFavorites] = useState<any[]>([]);
     const [savedTitles, setSavedTitles] = useState<string[]>([]);
+
+    const [cookNow, setCookNow] = useState<any>({});
 
     // destructuring 
     const { data, loading } = dishes;
@@ -61,8 +66,11 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
             setFavorites(array);
             setSavedTitles(savedTitles.filter(savedTitle => savedTitle !== payload.title));
         }
+    }
 
-
+    const handleCookNow = (title: string) => {
+        let array = data.filter(item => item.title === title);
+        setCookNow(array[0]);
     }
 
     // call function when component is mounted the first time
@@ -71,12 +79,13 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
     }, []);
 
     useEffect(() => {
-        console.log(favorites, savedTitles);
-    }, [favorites, savedTitles]);
+        console.log(cookNow);
+
+    }, [cookNow]);
 
 
     return (
-        <Context.Provider value={{ data, loading, getData, handleFavorites }}>
+        <Context.Provider value={{ data, loading, getData, handleFavorites, handleCookNow }}>
             {children}
         </Context.Provider>
     )
