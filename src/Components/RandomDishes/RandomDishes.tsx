@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { API } from '../../Config/api';
-import { API_KEY } from '../../Config/apiKey';
+import React, { useContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import SkeletonPlaceholder from '../SkeletonPlaceholder/SkeletonPlaceholder';
 import Carousel from 'react-multi-carousel';
@@ -8,6 +6,7 @@ import 'react-multi-carousel/lib/styles.css';
 import { GiCook } from 'react-icons/gi';
 import { HiHeart } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
+import { Context } from '../../Context/Context';
 
 const responsive = {
     desktop: {
@@ -24,36 +23,16 @@ const responsive = {
     }
 };
 
-type Initial = {
-    data: any[],
-    loading: boolean
-}
 
 const RandomDishes = () => {
-    const [randomDishes, setRandomDishes] = useState<Initial>({
-        data: [],
-        loading: true,
-    });
-
-    const { data, loading } = randomDishes
-
-    // For Random recepies
-    const getRandomDishData = async () => {
-        const response = await API.get(`recipes/random?number=1&apiKey=${API_KEY}`);
-        setRandomDishes({ data: response.data.recipes, loading: false })
-        // console.log(response.data);
-    }
-
-    useEffect(() => {
-        // getRandomDishData();
-    }, [])
-
+    // use from Context.tsx
+    const { dataRandom, loadingRandom, handleCookNow, handleFavorites } = useContext(Context);
 
     return (
         <div>
-            {!loading ?
+            {!loadingRandom ?
                 <Carousel responsive={responsive} infinite={true} focusOnSelect={true}>
-                    {data.map(dish =>
+                    {dataRandom.map(dish =>
                     (<article className='random-card' key={uuidv4()}>
                         <img src={dish.image} alt={dish.title} className='random-card__image' />
                         <aside className='random-card__container'>
@@ -62,8 +41,8 @@ const RandomDishes = () => {
                                 {dish.readyInMinutes}min | {dish.servings} servings
                             </p>
                             <div className='random-card__btns'>
-                                <Link to={'/recipeDetails'}><button className='random-card__btn'>Cook <i className='random-card__icon'><GiCook /></i></button></Link>
-                                <button className='random-card__btn'>Add <i className='random-card__icon'><HiHeart /></i></button>
+                                <Link to={'/recipeDetails'}><button className='random-card__btn' onClick={() => handleCookNow(dish.title)}>Cook <i className='random-card__icon'><GiCook /></i></button></Link>
+                                <button className='random-card__btn' onClick={() => handleFavorites(dish)}>Add <i className='random-card__icon'><HiHeart /></i></button>
                             </div>
                         </aside>
                     </article>)

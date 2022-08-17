@@ -8,17 +8,16 @@ import { Context } from '../Context/Context';
 
 const Home = () => {
     // use from Context.tsx
-    const { data, loading } = useContext(Context);
+    const { dataDishes, loadingDishes } = useContext(Context);
 
     return (
         <div className='home' style={{ marginTop: '1500px' }}>
             <SearchForm />
             <RandomDishes />
             <TopButton />
-            {/* <button onClick={() => getData(localStorage.dish)}>get more results</button> */}
-            {!loading && data.length !== 0
-                ? <DishesList data={data} />
-                : !loading && data.length === 0 ? "NO DATA"
+            {!loadingDishes && dataDishes.length !== 0
+                ? <DishesList data={dataDishes} />
+                : !loadingDishes && dataDishes.length === 0 ? "NO DATA"
                     : <SkeletonPlaceholder number={9} />}
         </div>
     );

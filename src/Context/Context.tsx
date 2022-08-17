@@ -5,18 +5,30 @@ import { API_KEY } from "../Config/apiKey";
 //---------CONTEXT (1.define type of data for context; 2.create context)------ //
 // 1.
 export type ContextType = {
-    data: any[],
-    loading: boolean,
+    dataDishes: any[],
+    loadingDishes: boolean,
+    dataRandom: any[],
+    loadingRandom: boolean,
+    favorites: any[],
+    cookNow: any,
+    history: any[],
     getData: (name: string) => void,
     handleFavorites: (payload: any) => void,
-    handleCookNow: (title: string) => void
+    handleCookNow: (title: string) => void,
+    handleHistory: (title: string) => void
 }
 const initailValue = {
-    data: [],
-    loading: true,
+    dataDishes: [],
+    loadingDishes: true,
+    dataRandom: [],
+    loadingRandom: true,
+    favorites: [],
+    cookNow: {},
+    history: [],
     getData: (name: string) => { },
     handleFavorites: (payload: any) => { },
-    handleCookNow: (title: string) => { }
+    handleCookNow: (title: string) => { },
+    handleHistory: (title: string) => { }
 }
 
 // 2.
@@ -30,10 +42,16 @@ type Props = { children: React.ReactNode }
 // 4.
 const ContextProvider: React.FC<Props> = ({ children }) => {
 
-    // state that will be passed as value to ContextProvider 
-    const [dishes, setDishes] = useState<{ data: any[], loading: boolean }>({
-        data: [],
-        loading: true
+    /*-------states that will be passed as value to ContextProvider-----*/
+    // data based on value that is passed in search form --- Home page
+    const [dishes, setDishes] = useState<{ dataDishes: any[], loadingDishes: boolean }>({
+        dataDishes: [],
+        loadingDishes: true
+    });
+    // random data --- Home page
+    const [randomDishes, setRandomDishes] = useState<{ dataRandom: any[], loadingRandom: boolean }>({
+        dataRandom: [],
+        loadingRandom: true,
     });
 
     // favorites page
@@ -43,51 +61,64 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
     // recipe details page
     const [cookNow, setCookNow] = useState<any>({});
 
-    // history
+    // history page
     const [history, setHistory] = useState<any[]>([]);
 
     // destructuring 
-    const { data, loading } = dishes;
+    const { dataDishes, loadingDishes } = dishes;
+    const { dataRandom, loadingRandom } = randomDishes;
 
-    // function to get data
+
+    // function to get data based on value that is passed in search form
     const getData = async (name: string) => {
         // set name to localStorage, so when we open app the first time it will display some data
         localStorage.setItem("dish", name);
         const response = await API.get(`recipes/complexSearch?query=${name}&fillIngredients=true&addRecipeInformation=true&maxCalories=5000&number=3&apiKey=${API_KEY}`);
-        setDishes({ data: response.data.results, loading: false });
+        setDishes({ dataDishes: response.data.results, loadingDishes: false });
+    }
+    // function to get random data
+    const getRandomDishData = async () => {
+        const response = await API.get(`recipes/random?number=1&apiKey=${API_KEY}`);
+        setRandomDishes({ dataRandom: response.data.recipes, loadingRandom: false })
     }
 
 
-    // function to add or remove items from favorites
-
+    // function which add or remove items from favorites onClick
     const handleFavorites = (payload: any) => {
         if (!savedTitles.includes(payload.title)) {
             setFavorites([...favorites, payload]);
             setSavedTitles([...savedTitles, payload.title]);
         } else if (savedTitles.includes(payload.title)) {
-            let array = favorites.filter(item => item.title !== payload.title);
-            setFavorites(array);
+            setFavorites(favorites.filter(item => item.title !== payload.title));
             setSavedTitles(savedTitles.filter(savedTitle => savedTitle !== payload.title));
         }
     }
 
+    // get data to recipe details page
     const handleCookNow = (title: string) => {
-        setCookNow(data.find(item => item.title === title));
-        setHistory([...history, data.find(item => item.title === title)]);
+        let allDishes = [...dataDishes, ...dataRandom];
 
+        setCookNow(allDishes.find(item => item.title === title));
+        setHistory([...history, allDishes.find(item => item.title === title)]);
+    }
 
+    // function which will remove item from history
+    const handleHistory = (title: string) => {
+        setHistory(history.filter(item => item.title !== title));
     }
 
     // call function when component is mounted the first time
     useEffect(() => {
         getData(localStorage.dish);
+        // getRandomDishData();
     }, []);
 
 
 
 
+
     return (
-        <Context.Provider value={{ data, loading, getData, handleFavorites, handleCookNow }}>
+        <Context.Provider value={{ dataDishes, loadingDishes, dataRandom, loadingRandom, favorites, cookNow, history, getData, handleFavorites, handleCookNow, handleHistory }}>
             {children}
         </Context.Provider>
     )
