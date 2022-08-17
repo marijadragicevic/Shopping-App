@@ -36,10 +36,15 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
         loading: true
     });
 
+    // favorites page
     const [favorites, setFavorites] = useState<any[]>([]);
     const [savedTitles, setSavedTitles] = useState<string[]>([]);
 
+    // recipe details page
     const [cookNow, setCookNow] = useState<any>({});
+
+    // history
+    const [history, setHistory] = useState<any[]>([]);
 
     // destructuring 
     const { data, loading } = dishes;
@@ -50,8 +55,6 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
         localStorage.setItem("dish", name);
         const response = await API.get(`recipes/complexSearch?query=${name}&fillIngredients=true&addRecipeInformation=true&maxCalories=5000&number=3&apiKey=${API_KEY}`);
         setDishes({ data: response.data.results, loading: false });
-        console.log(response);
-
     }
 
 
@@ -69,8 +72,10 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
     }
 
     const handleCookNow = (title: string) => {
-        let array = data.filter(item => item.title === title);
-        setCookNow(array[0]);
+        setCookNow(data.find(item => item.title === title));
+        setHistory([...history, data.find(item => item.title === title)]);
+
+
     }
 
     // call function when component is mounted the first time
@@ -78,10 +83,7 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
         getData(localStorage.dish);
     }, []);
 
-    useEffect(() => {
-        console.log(cookNow);
 
-    }, [cookNow]);
 
 
     return (
