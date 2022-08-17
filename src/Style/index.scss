@@ -14,6 +14,7 @@
 @import './Components/RandomDishes.scss';
 @import './Components/SearchForm.scss';
 @import './Components/TopButton.scss';
+@import './Components/RecipeDetails.scss';
 
 // CLASSES
 .active{
@@ -44,7 +45,7 @@
 
     min-height: 100vh;
 
-    .home{
+    .home,.recipe-details{
         width: 50%;
 
         @media(max-width:768px){

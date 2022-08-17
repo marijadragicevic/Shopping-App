@@ -11,7 +11,7 @@ const Home = () => {
     const { dataDishes, loadingDishes } = useContext(Context);
 
     return (
-        <div className='home' style={{ marginTop: '1500px' }}>
+        <div className='home'>
             <SearchForm />
             <RandomDishes />
             <TopButton />

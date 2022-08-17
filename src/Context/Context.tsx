@@ -109,9 +109,13 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
 
     // call function when component is mounted the first time
     useEffect(() => {
-        getData(localStorage.dish);
-        // getRandomDishData();
+        // getData(localStorage.dish);
+        getRandomDishData();
     }, []);
+    useEffect(() => {
+        console.log(cookNow);
+
+    }, [cookNow]);
 
 
 

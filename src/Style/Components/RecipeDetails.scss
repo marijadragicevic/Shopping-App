@@ -1,0 +1,60 @@
+.recipe-details{
+    background: linear-gradient(180deg,rgba($color:$black,$alpha:0.5),$black);
+    .header{
+        opacity: 0.0;
+        $self:'.header';
+        // display: flex;
+        // position: relative;
+        height: 50vh;
+        // background-color: $black;
+    
+        // &__image{
+        //     opacity: 0.5;
+        // }
+    
+        // &__container{
+        //     text-align: center;
+        //     position: absolute;
+        //     top: 50%;
+        //     left: 50%;
+        //     transform: translate(-50%,-50%);
+    
+        //     text-shadow: 0 0 10px $darkYellow;
+        //     color: $white;
+    
+    
+            #{$self}__title{
+                font-size: 1.8em;
+                font-weight: 500;
+                margin-bottom: 0.2em;
+            }
+    
+            #{$self}__text{
+                font-weight: 300;
+            }
+        // }
+    }
+    
+    .recipe{
+        // width: 50%;
+      
+        // display: flex;
+        // flex-wrap: wrap;
+        // gap: 0.5em;
+    
+        &__form{
+            $self:'.form';
+    
+            #{$self}__title{
+                
+            }
+    
+            #{$self}__label{
+    
+                #{$self}__input{
+    
+                }
+            }
+        }
+    }
+}
