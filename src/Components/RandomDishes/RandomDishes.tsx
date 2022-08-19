@@ -26,7 +26,7 @@ const responsive = {
 
 const RandomDishes = () => {
     // use from Context.tsx
-    const { dataRandom, loadingRandom, handleCookNow, handleFavorites } = useContext(Context);
+    const { dataRandom, loadingRandom, handleAddToHistory, handleFavorites } = useContext(Context);
 
     return (
         <div>
@@ -41,7 +41,7 @@ const RandomDishes = () => {
                                 {dish.readyInMinutes}min | {dish.servings} servings
                             </p>
                             <div className='random-card__btns'>
-                                <Link to={`/:${dish.title}`}><button className='random-card__btn' /*onClick={() => handleCookNow(dish.title)}*/>Cook <i className='random-card__icon'><GiCook /></i></button></Link>
+                                <Link to={`/:${dish.title}`}><button className='random-card__btn' onClick={() => handleAddToHistory(dish)}>Cook <i className='random-card__icon'><GiCook /></i></button></Link>
                                 <button className='random-card__btn' onClick={() => handleFavorites(dish)}>Add <i className='random-card__icon'><HiHeart /></i></button>
                             </div>
                         </aside>

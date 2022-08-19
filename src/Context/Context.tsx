@@ -10,12 +10,11 @@ export type ContextType = {
     dataRandom: any[],
     loadingRandom: boolean,
     favorites: any[],
-    cookNow: any,
     history: any[],
     getData: (name: string) => void,
     handleFavorites: (payload: any) => void,
-    handleCookNow: (title: string) => void,
-    handleHistory: (title: string) => void
+    handleAddToHistory: (payload: any) => void,
+    handleRemoveFromHistory: (title: string) => void
 }
 const initailValue = {
     dataDishes: [],
@@ -23,12 +22,11 @@ const initailValue = {
     dataRandom: [],
     loadingRandom: true,
     favorites: [],
-    cookNow: {},
     history: [],
     getData: (name: string) => { },
     handleFavorites: (payload: any) => { },
-    handleCookNow: (title: string) => { },
-    handleHistory: (title: string) => { }
+    handleAddToHistory: (payload: any) => { },
+    handleRemoveFromHistory: (title: string) => { }
 }
 
 // 2.
@@ -57,9 +55,6 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
     // favorites page
     const [favorites, setFavorites] = useState<any[]>([]);
     const [savedTitles, setSavedTitles] = useState<string[]>([]);
-
-    // recipe details page
-    const [cookNow, setCookNow] = useState<any>({});
 
     // history page
     const [history, setHistory] = useState<any[]>([]);
@@ -93,24 +88,19 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
             setFavorites(favorites.filter(item => item.title !== payload.title));
             setSavedTitles(savedTitles.filter(savedTitle => savedTitle !== payload.title));
         }
+        localStorage.favorites(JSON.stringify(favorites));
     }
 
-    // get data to recipe details page
-    const handleCookNow = (title: string) => {
-        let allDishes = [...dataDishes, ...dataRandom];
-
-        setCookNow(allDishes.find(item => item.title === title));
-        setHistory([...history, allDishes.find(item => item.title === title)]);
-
-        localStorage.setItem('cookNow', JSON.stringify(cookNow));
-
-        // localStorage.setItem('history', JSON.stringify([...history, allDishes.find(item => item.title === title)]));
-
+    // function which will add item to history when cook icon is clicked in home page
+    const handleAddToHistory = (payload: any) => {
+        setHistory([...history, payload]);
+        localStorage.setItem('history', JSON.stringify([...history, payload]));
     }
 
-    // function which will remove item from history
-    const handleHistory = (title: string) => {
+    // function which will remove item from history when trash icon is clicked in history page
+    const handleRemoveFromHistory = (title: string) => {
         setHistory(history.filter(item => item.title !== title));
+        localStorage.setItem('history', JSON.stringify(history.filter(item => item.title !== title)));
     }
 
     // call function when component is mounted the first time
@@ -120,12 +110,8 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
     }, []);
 
 
-
-
-
-
     return (
-        <Context.Provider value={{ dataDishes, loadingDishes, dataRandom, loadingRandom, favorites, cookNow, history, getData, handleFavorites, handleCookNow, handleHistory }}>
+        <Context.Provider value={{ dataDishes, loadingDishes, dataRandom, loadingRandom, favorites, history, getData, handleFavorites, handleAddToHistory, handleRemoveFromHistory }}>
             {children}
         </Context.Provider>
     )

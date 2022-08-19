@@ -6,7 +6,7 @@ import { Context } from '../../Context/Context';
 
 
 const DishItem: React.FC<{ dish: any }> = ({ dish }) => {
-    const { handleFavorites, handleCookNow } = useContext(Context);
+    const { handleFavorites, handleAddToHistory } = useContext(Context);
 
     return (
         <article className='card'>
@@ -16,7 +16,7 @@ const DishItem: React.FC<{ dish: any }> = ({ dish }) => {
                 <div className='card__icons'>
                     <i className='card__icon card__icon--save' onClick={() => handleFavorites(dish)}><HiHeart /></i>
                     <Link to={`/:${dish.title}`}>
-                        <i className='card__icon card__icon--info' /*onClick={() => handleCookNow(dish.title)} */><GiCook /></i>
+                        <i className='card__icon card__icon--info' onClick={() => handleAddToHistory(dish)}><GiCook /></i>
                     </Link>
 
                 </div>

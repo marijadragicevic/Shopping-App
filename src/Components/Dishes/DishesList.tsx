@@ -36,17 +36,9 @@ const DishesList: React.FC<{ data: any[] }> = ({ data }) => {
 
     // observer.observe(container?.current?.lastChild as Element);
 
-
-    // ne radi
-    // const observe2 = new IntersectionObserver((entries) => {
-    //     entries.map((entry) => {
-    //         if (entry.intersectionRatio > 0.0) {
-    //             observer.unobserve(container?.current?.lastChild as Element);
-    //         }
-    //     });
-    // }, { threshold: 1 })
-
-    // observe2.observe(end?.current as Element)
+    // if (newData.length>=data.length) {
+    //      // observer.unobserve(container?.current?.lastChild as Element);
+    // }
 
     // }, [newData]);
 
