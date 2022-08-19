@@ -19,7 +19,7 @@ function App() {
         <ContextProvider>
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/recipeDetails' element={<RecipeDetails />} />
+            <Route path='/:title' element={<RecipeDetails />} />
             <Route path='/favorites' element={<Favorites />} />
             <Route path='/history' element={<History />} />
           </Routes>

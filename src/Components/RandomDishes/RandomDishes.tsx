@@ -41,7 +41,7 @@ const RandomDishes = () => {
                                 {dish.readyInMinutes}min | {dish.servings} servings
                             </p>
                             <div className='random-card__btns'>
-                                <Link to={'/recipeDetails'}><button className='random-card__btn' onClick={() => handleCookNow(dish.title)}>Cook <i className='random-card__icon'><GiCook /></i></button></Link>
+                                <Link to={`/:${dish.title}`}><button className='random-card__btn' /*onClick={() => handleCookNow(dish.title)}*/>Cook <i className='random-card__icon'><GiCook /></i></button></Link>
                                 <button className='random-card__btn' onClick={() => handleFavorites(dish)}>Add <i className='random-card__icon'><HiHeart /></i></button>
                             </div>
                         </aside>

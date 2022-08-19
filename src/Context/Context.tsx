@@ -73,7 +73,7 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
     const getData = async (name: string) => {
         // set name to localStorage, so when we open app the first time it will display some data
         localStorage.setItem("dish", name);
-        const response = await API.get(`recipes/complexSearch?query=${name}&fillIngredients=true&addRecipeInformation=true&maxCalories=5000&number=3&apiKey=${API_KEY}`);
+        const response = await API.get(`recipes/complexSearch?query=${name}&addRecipeInformation=true&maxCalories=5000&number=3&apiKey=${API_KEY}`);
         setDishes({ dataDishes: response.data.results, loadingDishes: false });
     }
     // function to get random data
@@ -81,6 +81,7 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
         const response = await API.get(`recipes/random?number=1&apiKey=${API_KEY}`);
         setRandomDishes({ dataRandom: response.data.recipes, loadingRandom: false })
     }
+
 
 
     // function which add or remove items from favorites onClick
@@ -100,6 +101,11 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
 
         setCookNow(allDishes.find(item => item.title === title));
         setHistory([...history, allDishes.find(item => item.title === title)]);
+
+        localStorage.setItem('cookNow', JSON.stringify(cookNow));
+
+        // localStorage.setItem('history', JSON.stringify([...history, allDishes.find(item => item.title === title)]));
+
     }
 
     // function which will remove item from history
@@ -109,13 +115,10 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
 
     // call function when component is mounted the first time
     useEffect(() => {
-        // getData(localStorage.dish);
-        getRandomDishData();
+        getData(localStorage.dish);
+        // getRandomDishData();
     }, []);
-    useEffect(() => {
-        console.log(cookNow);
 
-    }, [cookNow]);
 
 
 
