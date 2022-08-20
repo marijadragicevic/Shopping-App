@@ -1,6 +1,7 @@
 .recipe-details{
+    margin-bottom: 5em;
     
-    background-color: rgba($color: $black, $alpha: 1);
+    // background-color: rgba($color: $black, $alpha: 1);
     .header{
         $self:'.header';
         // height: 40vh;
@@ -13,7 +14,7 @@
         &__image{
             width: 100%;
             opacity: 0.5;
-            // object-fit: fill;
+            // object-fit: cover;
         }
     
         &__container{
@@ -51,15 +52,14 @@
     
         &__form{
             $self:'.form';
-    
+            
             #{$self}__title{
-                color: red;
+            
             }
     
             #{$self}__label{
     
-                #{$self}__input{
-                    color: red;
+                #{$self}__checkbox{
                 }
             }
         }

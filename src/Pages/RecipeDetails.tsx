@@ -12,20 +12,18 @@ const RecipeDetails: React.FC = () => {
         data: {},
         loading: true
     });
-    // rename it to videoID ?
-    const [videoInfo, setVideoInfo] = useState('');
+    const [videoID, setVideoID] = useState('');
     const { data, loading } = cookNow;
 
     const getRecipeDetails = async (name?: string) => {
-        const response = await API.get(`recipes/complexSearch?query=${name?.substring(1)}&fillIngredients=true&addRecipeInformation=true&maxCalories=5000&number=1&apiKey=${API_KEY}`);
-        setCookNow({ data: response.data.results[0], loading: false });
-        // console.log(response);
+        const response2 = await API.get(`food/videos/search?apiKey=${API_KEY}&query=${name?.substring(1)}&number=1`);
+        setVideoID(response2.data.videos[0].youTubeId);
 
-        const response1 = await API.get(`food/videos/search?apiKey=${API_KEY}&query=${name?.substring(1)}}&numbre=1 `);
-        // setVideoInfo();
-        console.log(response1);
-
+        const response1 = await API.get(`recipes/complexSearch?query=${name?.substring(1)}&fillIngredients=true&addRecipeInformation=true&maxCalories=5000&number=1&apiKey=${API_KEY}`);
+        setCookNow({ data: response1.data.results[0], loading: false });
     }
+
+    console.log(videoID);
 
 
     useEffect(() => {
@@ -61,7 +59,7 @@ const RecipeDetails: React.FC = () => {
                         </form>
 
                         {/* change ID to videoInfo paramentar */}
-                        <iframe className='recipe__video' src={`https://www.youtube.com/embed/ID`}></iframe>
+                        <iframe className='recipe__video' src={`https://www.youtube.com/embed/${videoID}`}></iframe>
                     </section>
                 </>)
                 : <SkeletonPlaceholder number={3} />}
