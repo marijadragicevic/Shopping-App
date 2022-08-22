@@ -3,11 +3,16 @@ import { Context } from '../Context/Context';
 import { v4 as uuidv4 } from 'uuid';
 import { API } from '../Config/api';
 import { API_KEY } from '../Config/apiKey';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import SkeletonPlaceholder from '../Components/SkeletonPlaceholder/SkeletonPlaceholder';
+import { HiHeart } from 'react-icons/hi';
+import { BsArrowLeft } from 'react-icons/bs';
 
 const RecipeDetails: React.FC = () => {
+    const { handleFavorites } = useContext(Context);
+
     const { title } = useParams();
+    const navigate = useNavigate();
     const [cookNow, setCookNow] = useState<{ data: any, loading: boolean }>({
         data: {},
         loading: true
@@ -23,7 +28,9 @@ const RecipeDetails: React.FC = () => {
         setCookNow({ data: response1.data.results[0], loading: false });
     }
 
-    console.log(videoID);
+    const handleBack = () => {
+        navigate('/');
+    }
 
 
     useEffect(() => {
@@ -33,33 +40,40 @@ const RecipeDetails: React.FC = () => {
 
 
     return (
-        <div className='recipe-details'>
+        <div className='recipe'>
             {!loading
                 ? (<>
-                    <header className='header' /*style={{ backgroundImage: `linear-gradient(to top,rgba(0,0,0,1),rgba(0,0,0,0.2)),url(${cookNow.image})` }}*/>
+                    <header className='recipe__header'>
                         <img src={data.image} className='header__image' alt={data.title} />
+                        <i className='header__icon--back' onClick={() => handleBack()}><BsArrowLeft /></i>
                         <article className='header__container'>
-                            <h2 className='header__title'>Let's make {data.title}!</h2>
-                            <p className='header__text'>{data.readyInMinutes} min | {data.servings} servings</p>
+                            <h2 className='header__title'>{data.title}</h2>
+                            <i className='header__icon' onClick={() => handleFavorites(data)}><HiHeart /></i>
                         </article>
                     </header>
 
-                    <section className='recipe'>
-                        <form className='recipe__form'>
-                            <h3 className='form__title'>Ingredients to make this meal:</h3>
-                            {data.extendedIngredients.map((item: { original: string, nameClean: string }) =>
-                                <label className='form__label' key={uuidv4()}><input type='checkbox' className='form__checkbox' />{item.original}/ {item.nameClean}</label>
+                    <section className='recipe__details'>
+                        <form className='recipe__details__form'>
+                            <h3 className='form__title'>Ingredients</h3>
+                            {data.extendedIngredients.map((item: { original: string }) =>
+                                <label className='form__label' key={uuidv4()}><input type='checkbox' className='form__checkbox' />{item.original}</label>
                             )}
                         </form>
-                        <form className='recipe__form'>
-                            <h3 className='form__title'>Instruction to make this meal:</h3>
+                        <form className='recipe__details__form'>
+                            <h3 className='form__title'>Instructions</h3>
                             {data.analyzedInstructions[0].steps.map((item: { step: string }) =>
                                 <label className='form__label' key={uuidv4()}><input type='checkbox' className='form__checkbox' />{item.step}</label>
                             )}
                         </form>
+                        <article className='recipe__details__video'>
+                            <h3 className='video__title'>Video</h3>
+                            <iframe className='video__iframe' src={`https://www.youtube.com/embed/${videoID}`}></iframe>
+                        </article>
+                    </section>
 
-                        {/* change ID to videoInfo paramentar */}
-                        <iframe className='recipe__video' src={`https://www.youtube.com/embed/${videoID}`}></iframe>
+                    <section className='recipe__inf'>
+                        <p className='recipe__inf__text'>Total Time: {data.readyInMinutes} MIN</p>
+                        <p className='recipe__inf__text'>Servings: {data.servings} Person </p>
                     </section>
                 </>)
                 : <SkeletonPlaceholder number={3} />}
